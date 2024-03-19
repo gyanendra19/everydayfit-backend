@@ -14,7 +14,9 @@ const errorController_1 = __importDefault(require("./controllers/errorController
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: 'https://everydayfit.vercel.app'
+}));
 const url = process.env.DATABASE;
 const pass = process.env.PASSWORD;
 const DB = url.replace('<password>', pass);
