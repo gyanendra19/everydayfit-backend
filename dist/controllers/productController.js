@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllProduct = exports.createProduct = void 0;
+exports.getProduct = exports.getAllProduct = exports.createProduct = void 0;
 const productModel_1 = __importDefault(require("../models/productModel"));
 const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const newProduct = yield productModel_1.default.create(req.body);
@@ -31,3 +31,12 @@ const getAllProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, func
     });
 });
 exports.getAllProduct = getAllProduct;
+const getProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { productName } = req.body;
+    const product = yield productModel_1.default.findOne({ productName });
+    res.status(201).json({
+        status: "success",
+        data: product
+    });
+});
+exports.getProduct = getProduct;

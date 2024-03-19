@@ -1,10 +1,10 @@
 import express from 'express'
-import {createProduct, getAllProduct, retrieveProduct} from '../controllers/productController'
+import {createProduct, getAllProduct, getProduct} from '../controllers/productController'
 
 
 const route = express.Router()
 route.route('/createProduct').post(createProduct)
-route.route('/retrieveProduct').post(retrieveProduct)
+route.route('/getProduct').post(getProduct)
 route.route('/getAllProduct').get(getAllProduct)
 
 export default route

@@ -22,7 +22,7 @@ export const getAllProduct = async(req: Request, res: Response, next: NextFuncti
     })
 }
 
-export const retrieveProduct = async(req: Request, res: Response, next: NextFunction) => {
+export const getProduct = async(req: Request, res: Response, next: NextFunction) => {
     const {productName} = req.body
     const product = await Product.findOne({productName})
 
