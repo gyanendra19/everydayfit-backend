@@ -11,9 +11,7 @@ dotenv.config()
 
 const app = express()
 app.use(express.json())
-app.use(cors({
-    origin: 'https://everydayfit.vercel.app'
-}))
+app.use(cors())
 
 const url = process.env.DATABASE as string;
 const pass = process.env.PASSWORD as string
