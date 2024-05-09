@@ -11,7 +11,9 @@ dotenv.config()
 
 const app = express()
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: 'https://everydayfit.vercel.app'
+}))
 
 const url = process.env.DATABASE as string;
 const pass = process.env.PASSWORD as string
@@ -19,6 +21,13 @@ const DB = url.replace('<password>', pass)
 mongoose.connect(DB).then(() => {
     console.log('Database Connected')
 })
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // Replace * with specific origins if needed
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    next();
+});
 
 app.use('/api/v1/user', userRoute)
 app.use('/api/v1/blog', blogRoute)
